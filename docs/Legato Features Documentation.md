@@ -24,7 +24,7 @@ Links are at the bottom of the page
  14 | Boot Reason Query | *Debugging purposes - Reasons why device is out of ULPM*
  15 | SMS Functions | Allows the reception and sending of messages
  16 | Clock API | Might need this. **C Runtime Library**
-
+ 17 | Config Tree API | Non-relationalSQL database that stores config values from apps
  1. <http://legato.io/legato-docs/latest/c_logging.html>
  2. <http://legato.io/legato-docs/latest/c_appCtrl.html>
  3. <http://legato.io/legato-docs/latest/avData.html>
@@ -41,3 +41,4 @@ Links are at the bottom of the page
  14. <http://legato.io/legato-docs/latest/c_bootReason.html>
  15. <http://legato.io/legato-docs/latest/c_sms.html>
  16. <http://legato.io/legato-docs/latest/c_clock.html>
+ 17. <http://legato.io/legato-docs/latest/c_config.html>
