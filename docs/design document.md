@@ -53,12 +53,10 @@ power consumption.
 
 The software will be comprised of 3(?) legato components, each serving an individual
 purpose within the software. The first component will be completely focused on
-data collection and logging. The second will be focused completely around the
-alert component of the software, and will handle detecting as well as notifying
-users by means besides Airvantage(SMS, email). The final component will be focused
-on sending messages and data to Airvantage, and will also include a lot of logic
-surrounding when to send messages and when to sleep the power hungry cellular modem.
-
+data collection and logging, and will also handle recording alerts when sensor
+data exceeds defined values. The final component will be focused on sending
+messages and data to Airvantage, and will also include a lot of logic surrounding
+when to send messages and when to sleep the power hungry cellular modem.
 
 ### Data Collection Component
 
@@ -78,13 +76,8 @@ $VALUE = 20°C/Latitude/longtitude coordinates.
 Data will be stored in a UTF-8 encoded text file which will be regularily updated
 by the logging component.
 
-### Alerts Components
-
-This component's primary job is to analyze the data recorded by the collection
-component and then detect when data values exceed the defined alert values.
-It will parse the data log file and then when an alert is detected it will
-automatically queue information to send to Airvantage or by SMS or by email
-whenever the Airvantage component wakes the cellular modem.
+Suggestion from Ian: Log data only when it exceeds certain values and stop
+logging when it returns to normal. For now this will be configurable.
 
 ### Airvantage Component
 

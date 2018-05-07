@@ -1,0 +1,10 @@
+executables: {
+    LogTest = ( dataComponent )
+}
+
+processes: {
+    run: {
+        ( LogTest )
+    }
+}
+start: manual
