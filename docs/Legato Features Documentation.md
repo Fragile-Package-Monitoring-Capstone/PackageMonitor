@@ -25,6 +25,11 @@ Links are at the bottom of the page
  15 | SMS Functions | Allows the reception and sending of messages
  16 | Clock API | Might need this. **C Runtime Library**
  17 | Config Tree API | Non-relationalSQL database that stores config values from apps
+ --- | --- | ---
+ Sample Apps |--- |---
+ 18 | Airvantage Control
+ 19 | Airvantage Assetdata
+ 20 | Ultra Low Power Mode
  1. <http://legato.io/legato-docs/latest/c_logging.html>
  2. <http://legato.io/legato-docs/latest/c_appCtrl.html>
  3. <http://legato.io/legato-docs/latest/avData.html>
@@ -42,3 +47,6 @@ Links are at the bottom of the page
  15. <http://legato.io/legato-docs/latest/c_sms.html>
  16. <http://legato.io/legato-docs/latest/c_clock.html>
  17. <http://legato.io/legato-docs/latest/c_config.html>
+ 18. <http://legato.io/legato-docs/latest/sampleApps_AV.html>
+ 19. <http://legato.io/legato-docs/latest/sampleApps_AVAssetData.html>
+ 20. <http://legato.io/legato-docs/latest/sampleApps_lowPower.html>
