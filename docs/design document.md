@@ -73,8 +73,13 @@ $SENSOR = Temperature/Humidity etc.
 $VALUE = 20°C/Latitude/longtitude coordinates.
 ```
 
-Data will be stored in a UTF-8 encoded text file which will be regularily updated
+Data will be stored in a UTF-8 encode text file which will be regularily updated
 by the logging component.
+
+Configurable options:
+
+1. Duration between sensory data logs
+2. What data is logged
 
 Suggestion from Ian: Log data only when it exceeds certain values and stop
 logging when it returns to normal. For now this will be configurable.

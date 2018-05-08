@@ -3,6 +3,6 @@
 
 #include "legato.h"
 
-le_result_t ReadDoubleFromFile(const char *filePath, double *value);
-le_result_t ReadIntFromFile(const char *filePath, int *value);
+le_result_t readDoubleFromFile(const char *filePath, double *value);
+le_result_t readIntFromFile(const char *filePath, int *value);
 #endif //SENSOR_TOOLS_H

@@ -11,7 +11,7 @@ le_result_t readDoubleFromFile(const char *filePath, double *value) {
         result = LE_IO_ERROR;
     }
     
-    int scannedNumber = fscanf(f, "%d", value);
+    int scannedNumber = fscanf(f, "%lf", value);
     if(scannedNumber != 1)
     {
         result = LE_FORMAT_ERROR;
@@ -21,7 +21,7 @@ le_result_t readDoubleFromFile(const char *filePath, double *value) {
     return result;
 }
 
-le_result_t ReadIntFromFile(const char *filePath, int *value) {
+le_result_t readIntFromFile(const char *filePath, int *value) {
     le_result_t r = LE_OK;
     FILE *f = fopen(filePath, "r");
     if (f == NULL)

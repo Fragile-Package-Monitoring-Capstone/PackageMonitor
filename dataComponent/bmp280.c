@@ -6,12 +6,12 @@ static const char PressureFile[] = "/sys/devices/78b8000.i2c/i2c-4/4-0076/iio:de
 static const char TemperatureFile[] = "/sys/devices/78b8000.i2c/i2c-4/4-0076/iio:device1/in_temp_input";
 
 le_result_t mangOH_ReadPressureSensor(double *reading) {
-    return ReadDoubleFromFile(PressureFile, reading);
+    return readDoubleFromFile(PressureFile, reading);
 }
 
 le_result_t mangOH_ReadTemperatureSensor(double *reading) {
     int temperature; 
-    le_result_t result = ReadIntFromFile(TemperatureFile, &temperature);
+    le_result_t result = readIntFromFile(TemperatureFile, &temperature);
 
     if (result != LE_OK) {
         return result;
