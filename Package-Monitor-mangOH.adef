@@ -1,3 +1,7 @@
+start: manual
+sandboxed: true
+version: 0.1
+
 executables: {
     LogTest = ( dataComponent )
 }
@@ -6,6 +10,7 @@ processes: {
     run: {
         ( LogTest )
     }
+    envVars: {
+        LE_LOG_LEVEL = DEBUG
+    }
 }
-start: manual
-sandboxed: false

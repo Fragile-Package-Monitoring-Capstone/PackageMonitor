@@ -1,9 +1,10 @@
 #include "legato.h"
 #include "interfaces.h"
 #include "sensorTools.h"
+#include "bmp280.h"
 
-static const char PressureFile[] = "/sys/devices/78b8000.i2c/i2c-4/4-0076/iio:device1/in_pressure_input";
-static const char TemperatureFile[] = "/sys/devices/78b8000.i2c/i2c-4/4-0076/iio:device1/in_temp_input";
+static const char PressureFile[] = "/sys/devices/i2c-0/0-0076/iio:device1/in_pressure_input";
+static const char TemperatureFile[] = "/sys/devices/i2c-0/0-0076/iio:device1/in_temp_input";
 
 le_result_t mangOH_ReadPressureSensor(double *reading) {
     return readDoubleFromFile(PressureFile, reading);

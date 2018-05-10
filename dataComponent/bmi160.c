@@ -4,7 +4,7 @@
 #include "bmi160.h"
 #include "sensorTools.h"
 
-static const char FormatStr[] = "/sys/devices/i2c-0/0-0068/iio:device0/in_%s_%s";
+static const char FormatStr[] = "/sys/devices/i2c-4/4-0068/iio:device0/in_%s_%s";
 static const char AccType[]   = "accel";
 static const char GyroType[]  = "anglvel";
 static const char CompX[]     = "x_raw";
