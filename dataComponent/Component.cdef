@@ -1,7 +1,8 @@
 sources: {
-    bmp280.c
     init.c
-    sensorTools.c
+    sensorCode/bmp280.c
+    sensorCode/sensorTools.c
+    sensorCode/bmi160.c
 }
 requires: {
     file: {
