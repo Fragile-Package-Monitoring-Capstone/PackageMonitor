@@ -1,29 +1,15 @@
 #include "configFileReader.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #define numberOfConfigOptions (5)
 
 int debugEnvVarSet = 0;
 
-static int dataInterval;
-/*
-boolean values are stored as int because stdbool does this and there's no point in 
-including stdbool when it just stores true and false as 0 and 1 anyways. 
-*/
-static int isTempLogged;
-static int isPressureLogged;
-static int isGyroLogged;
-static int isAccelerationLogged;
-int *configOptions[numberOfConfigOptions] = {&dataInterval, &isTempLogged, &isPressureLogged ,&isAccelerationLogged, &isGyroLogged}; 
+int configOptions[numberOfConfigOptions] = {/*Data Interval: */ 0, /*Temp Logged Bool*/ 0, /*Pressure Logged Bool
+*/ 0, /*Acceleration Logged Bool*/ 0, /*Gyro Logged Bool*/ 0}; 
 
-//These are used to determine what the config options are in the file
-char optionDataInterval[] = "dataInterval";
-char optionIsTempLogged[] = "isTempLogged";
-char optionIsPressureLogged[] = "isPressureLogged";
-char optionIsGyroLogged[] = "isGyroLogged";
-char optionIsAccelerationLogged[] = "isAccelerationLogged";
-char *nameOfConfigOptions[numberOfConfigOptions] = {optionDataInterval, optionIsTempLogged, optionIsPressureLogged, optionIsAccelerationLogged, optionIsGyroLogged};
+char nameOfConfigOptions[numberOfConfigOptions][21] = {"dataInterval", "isTempLogged", "isPressureLogged", "isAccelerationLogged", "isGyroLogged"};
 
 #define configFilePath  ("configfile")
 
@@ -35,41 +21,56 @@ void readConfigOption(const char *filePath) {
         exit(1);
     }
 
-    char buffer[22];
-
+    char buffer[64];
+    /*
     if (debugEnvVarSet = 1) {
         printf("File opened successfully\n");
         while(fgets(buffer, sizeof(buffer), f)) {
             printf("%s", buffer);
         }        
-    }
+    } */
+    //These arrays are for the parts of the config options that don't need to be kept and stored
+    char optionArray[8];
+    char valueArray[7];
+    //These variables are what we actually care about
+    char optionName[21];
+    int optionValue;
 
-    
     for(size_t i = 0; i < numberOfConfigOptions; i++) {
+        //iterate over the lines in the file
         fgets(buffer, sizeof(buffer), f);
-        if(buffer == nameOfConfigOptions[i]) {
+        //printf("%s", buffer);
+        sscanf(buffer, "%7s%21s %6s%d", optionArray, optionName, valueArray, &optionValue);
+        for(int j = 0; j < numberOfConfigOptions; j++) {
+            
+            if(strcmp(optionName, nameOfConfigOptions[j]) == 0) {
+                configOptions[j] = optionValue;
+            
+            } else {
+            
+            }
             
         }
-        
-        
-        
     }
     
     fclose(f);
-}
-
-int main() {
+}    
+/*This is maintained for testing purposes in the future, but the function and variables will be exposed in a header 
+file. 
+int main() { 
     if(getenv("DEBUG")) {
         printf("DEBUG envvar found\n");
         debugEnvVarSet = 1;
     }
     
     readConfigOption(configFilePath);
-    
-    /*for(int i = 0; i < numberOfConfigOptions; i++) {
-        printf("%d ", *configOptions[i]);
-        printf("\n");
-    } */
+    if(debugEnvVarSet == 1) {
+        char optionFromFile[35];
+        for(size_t i = 0; i < numberOfConfigOptions; i++) {
+            printf("%i", configOptions[i]);
+            printf("\n");
+        }     
+    }
     
     return 0;
-}
+}*/

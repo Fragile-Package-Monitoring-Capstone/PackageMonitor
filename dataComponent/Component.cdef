@@ -3,6 +3,7 @@ sources: {
     sensorCode/bmp280.c
     sensorCode/sensorTools.c
     sensorCode/bmi160.c
+    configFileReader.c
 }
 requires: {
     file: {

@@ -2,7 +2,7 @@
 #include "sensorCode/bmi160.h"
 #include "legato.h"
 #include "interfaces.h"
-
+#include "configFileReader.h"
 
 double temp;
 double pressure;
@@ -13,7 +13,11 @@ double xgyro;
 double ygyro;
 double zgyro;
 
+char configFilePath[] = "";
+
 COMPONENT_INIT {     
+
+    readConfigOption(*configFilePath);
     
     while(true){    
         mangOH_ReadTemperatureSensor(&temp);
