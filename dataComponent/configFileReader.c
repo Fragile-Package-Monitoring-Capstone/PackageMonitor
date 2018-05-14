@@ -1,7 +1,5 @@
 #include "configFileReader.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "legato.h"
 #define numberOfConfigOptions (5)
 
 int debugEnvVarSet = 0;
@@ -42,7 +40,6 @@ void readConfigOption(const char *filePath) {
         //printf("%s", buffer);
         sscanf(buffer, "%7s%21s %6s%d", optionArray, optionName, valueArray, &optionValue);
         for(int j = 0; j < numberOfConfigOptions; j++) {
-            
             if(strcmp(optionName, nameOfConfigOptions[j]) == 0) {
                 configOptions[j] = optionValue;
             
@@ -62,7 +59,7 @@ int main() {
         printf("DEBUG envvar found\n");
         debugEnvVarSet = 1;
     }
-    
+
     readConfigOption(configFilePath);
     if(debugEnvVarSet == 1) {
         char optionFromFile[35];
