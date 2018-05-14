@@ -4,7 +4,7 @@
 #include "bmi160.h"
 #include "sensorTools.h"
 
-static const char FormatStr[] = "/sys/devices/i2c-4/4-0068/iio:device0/in_%s_%s";
+static const char FormatStr[] = "/sys/devices/i2c-0/0-0068/iio:device0/in_%s_%s";
 static const char AccType[]   = "accel";
 static const char GyroType[]  = "anglvel";
 static const char CompX[]     = "x_raw";
@@ -12,9 +12,7 @@ static const char CompY[]     = "y_raw";
 static const char CompZ[]     = "z_raw";
 static const char CompScale[] = "scale";
 
-/**
- * Reports the x, y and z accelerometer readings in meters per second squared.
- */
+
 le_result_t mangOH_ReadAccelerometer (double *xAcc, double *yAcc, double *zAcc) {
     le_result_t r;
     char path[256];
@@ -55,16 +53,8 @@ done:
     return r;
 }
 
-/**
- * Reports the x, y and z gyro readings in radians per second.
- */
-le_result_t mangOH_ReadGyro
-(
-    double *x,
-    double *y,
-    double *z
-)
-{
+
+le_result_t mangOH_ReadGyro (double *x, double *y, double *z) {
     le_result_t r;
     char path[256];
 
