@@ -1,5 +1,8 @@
 #include "configFileReader.h"
 #include "legato.h"
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>*/
 #define numberOfConfigOptions (5)
 
 int debugEnvVarSet = 0;
@@ -12,10 +15,10 @@ char nameOfConfigOptions[numberOfConfigOptions][21] = {"dataInterval", "isTempLo
 #define configFilePath  ("configfile")
 
 //Read the data from the config file
-void readConfigOption(const char *filePath) {
-    FILE *f = fopen(filePath, "r+");
+le_result_t readConfigOption(const char *filePath) {
+    FILE *f = fopen(filePath, "r");
     if(f == NULL) {
-        printf("Error, File could not be opened.\n");
+        LE_INFO("Error, File could not be opened.\n");
         exit(1);
     }
 
@@ -40,6 +43,7 @@ void readConfigOption(const char *filePath) {
         //printf("%s", buffer);
         sscanf(buffer, "%7s%21s %6s%d", optionArray, optionName, valueArray, &optionValue);
         for(int j = 0; j < numberOfConfigOptions; j++) {
+            
             if(strcmp(optionName, nameOfConfigOptions[j]) == 0) {
                 configOptions[j] = optionValue;
             
@@ -49,7 +53,7 @@ void readConfigOption(const char *filePath) {
             
         }
     }
-    
+    return LE_OK;
     fclose(f);
 }    
 /*This is maintained for testing purposes in the future, but the function and variables will be exposed in a header 
@@ -59,7 +63,7 @@ int main() {
         printf("DEBUG envvar found\n");
         debugEnvVarSet = 1;
     }
-
+    
     readConfigOption(configFilePath);
     if(debugEnvVarSet == 1) {
         char optionFromFile[35];
@@ -70,4 +74,4 @@ int main() {
     }
     
     return 0;
-}*/
+} */

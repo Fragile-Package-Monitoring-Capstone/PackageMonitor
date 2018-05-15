@@ -1,9 +1,15 @@
+
+
+cflags: {
+    -Wno-unused-variable
+}
 sources: {
     init.c
     sensorCode/bmp280.c
     sensorCode/sensorTools.c
     sensorCode/bmi160.c
-   
+    configFileReader.c
+    logFileHandler.c
 }
 requires: {
     file: {
