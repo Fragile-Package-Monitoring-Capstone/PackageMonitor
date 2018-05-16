@@ -4,7 +4,7 @@
 #include "interfaces.h"
 #include "configFileReader.h"
 #include "logFileHandler.h"
-#include "le_timer.h"
+//#include "le_timer.h"
 
 //These are the variables that sensor data is stored in.
 double temp;
@@ -18,8 +18,8 @@ double xgyro;
 double ygyro;
 double zgyro;
 
-const char logFilePath[] = "/legato/systems/current/apps/Package_Monitor_mangOH/writeable/var/log/package-monitor-logfile";
-const char configFilePath[] = "/legato/systems/current/apps/Package_Monitor_mangOH/read-only/etc/package-monitor-configfile";
+const char logFilePath[] = "/var/log/package-monitor-logfile";
+const char configFilePath[] = "/etc/package-monitor-configfile";
 
 COMPONENT_INIT {     
     

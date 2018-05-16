@@ -1,5 +1,5 @@
 start: manual
-//sandboxed: true
+sandboxed: true
 version: 0.1
 
 bundles: 
