@@ -23,10 +23,10 @@ const char configFilePath[] = "/legato/systems/current/apps/Package_Monitor_mang
 
 COMPONENT_INIT {     
     
-    le_timer_Ref_t logTimer = le_timer_Create();
+  /*  le_timer_Ref_t logTimer = le_timer_Create();
 
     le_timer_SetInterval(logTimer, dataInterval);
-
+*/
     readConfigOption(configFilePath);
     
     while(true){    
