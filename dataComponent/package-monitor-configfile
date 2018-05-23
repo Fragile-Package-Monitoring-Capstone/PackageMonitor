@@ -1,0 +1,5 @@
+option:dataInterval         value:1
+option:isTempLogged         value:1
+option:isPressureLogged     value:1
+option:isAccelerationLogged value:1
+option:isGyroLogged         value:1
