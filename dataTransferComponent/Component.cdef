@@ -17,6 +17,6 @@ requires:
 
 sources: 
 {
-    avsend.c
+    avSend.c
 }
 
