@@ -1,0 +1,22 @@
+
+requires:
+{
+    api:
+    {
+        le_avdata.api
+        le_avc.api
+    }
+
+    component:
+    { 
+        dataComponent
+    }
+
+    
+}
+
+sources: 
+{
+    avsend.c
+}
+
