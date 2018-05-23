@@ -2,17 +2,14 @@
 #include "interfaces.h"
 
 
-le_result_t logDataToFile(char sensorName[], char sensorValue[], const char *filePath) {   
-    FILE *f = fopen(filePath, "a");
-    if(f == NULL) {
-        LE_INFO("Error, File could not be opened.");
-        exit(1);
-    }
+le_result_t logDataToFile(char sensorName[], char sensorValue[], FILE *logFile) {   
+    LE_ASSERT(logFile != NULL)
+    LE_INFO("Logging data...");
     time_t unixTime = time(NULL);
     struct tm *currentTime = gmtime(&unixTime);
 
     //My painful way to format the log message with judicrous use of strcat. 
-    //If anyone finds a better version please let me know
+    //If anyone finds a better way to do this please let me know
     char buffer[128];
     strftime(buffer, sizeof(buffer), "%FT", currentTime);
     strcat(buffer, " - ");
@@ -20,7 +17,6 @@ le_result_t logDataToFile(char sensorName[], char sensorValue[], const char *fil
     strcat(buffer, ": ");
     strcat(buffer, sensorValue);
     
-    fprintf(f, "%s", buffer);
+    fprintf(logFile, "%s", buffer);
     return LE_OK;
-    fclose(f);
 }

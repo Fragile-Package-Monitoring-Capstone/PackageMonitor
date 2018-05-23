@@ -3,6 +3,6 @@
 
 #include "legato.h"
 
-LE_SHARED le_result_t logDataToFile(char sensorName[], char sensorValue[], const char *filePath);
+LE_SHARED le_result_t logDataToFile(char sensorName[], char sensorValue[], FILE *logFile);
 
 #endif //LOG_FILE_HANDLER_H

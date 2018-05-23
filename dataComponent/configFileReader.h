@@ -3,13 +3,13 @@
 
 #include "legato.h"
 
-
-static int dataInterval;
-static int isTempLogged;
-static int isPressureLogged;
-static int isGyroLogged;
-static int isAccelerationLogged;
-
-LE_SHARED le_result_t readConfigOption(const char *filePath);
+struct configData readConfigOption(const char *filePath);
+struct configData {
+    int dataInterval;
+    bool isTempLogged;
+    bool isPressureLogged;
+    bool isAccelerationLogged;
+    bool isGyroLogged;
+};
 
 #endif //CONFIG_FILE_READER_H
