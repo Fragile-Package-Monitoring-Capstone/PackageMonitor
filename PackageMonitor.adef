@@ -1,0 +1,27 @@
+start: manual
+sandboxed: true
+version: 0.1
+
+bundles: 
+{
+    file: 
+    {
+        //place the log file into the /var/log directory for it to be written to
+        [rw] dataComponent/package-monitor-logfile /var/log/
+        //load the config file into the system etc directory
+        [r] dataComponent/package-monitor-configfile /etc/
+    }
+}
+
+executables: {
+    LogTest = ( dataComponent )
+}
+
+processes: {
+    run: {
+        ( LogTest )
+    }
+    envVars: {
+        LE_LOG_LEVEL = DEBUG
+    }
+}
