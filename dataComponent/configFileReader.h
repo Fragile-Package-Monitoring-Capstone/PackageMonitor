@@ -4,6 +4,7 @@
 #include "legato.h"
 
 struct configData readConfigOption(const char *filePath);
+
 struct configData {
     int dataInterval;
     bool isTempLogged;

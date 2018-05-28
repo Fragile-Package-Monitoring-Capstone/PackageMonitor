@@ -7,6 +7,7 @@
 
 int debugEnvVarSet = 0;
 
+//add options for airvantage configuration(thresholds for data being sent, )
 struct configData configOptions2 = {
     1000,  /*Data Interval: */
     false, /*Temp Logged Bool*/ 
@@ -21,6 +22,11 @@ int configOptions[numberOfConfigOptions] = {/*Data Interval: */ 0, /*Temp Logged
 char nameOfConfigOptions[numberOfConfigOptions][21] = {"dataInterval", "isTempLogged", "isPressureLogged", "isAccelerationLogged", "isGyroLogged"};
 
 #define configFilePath  ("configfile")
+
+/*struct configData* getConfigData(void) {
+    //create this function that returns a copy of the existing 
+} */
+
 
 //Read the data from the config file
 struct configData readConfigOption(const char *filePath) {
@@ -64,6 +70,8 @@ struct configData readConfigOption(const char *filePath) {
     // return a copy of the config object
     return configOptions2;
 }    
+
+
 /*This is maintained for testing purposes in the future, but the function and variables will be exposed in a header 
 file. 
 int main() { 

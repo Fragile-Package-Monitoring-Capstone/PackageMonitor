@@ -26,6 +26,9 @@ bool pressureLogged;
 bool accelerationLogged;
 bool gyroLogged;
 
+//Used to check when the file needs to be recycled.
+int logCycleCounter;
+
 // Ian's Timer Code
 #define SAMPLE_TIMER_PERIOD_MS (1000)
 
@@ -35,6 +38,8 @@ static void sampleTimerCallback (le_timer_Ref_t timerRef) {
 
     FILE *lf = fopen(logFilePath, "a");
     LE_ASSERT(lf != NULL);
+
+    
 
     // Not used
     (void)timerRef;
@@ -68,7 +73,7 @@ static void sampleTimerCallback (le_timer_Ref_t timerRef) {
         logDataToFile("Z Acceleration", zString, lf);
     }
 
-    if(1 /* waiting for ian's help to fix this problem (gyroLogged == 1 */) {
+    if(1 /* waiting for ian's help to fix this problem gyroLogged == 1 */) {
         mangOH_ReadGyro(&xgyro, &ygyro, &zgyro);
         LE_INFO("Current Orientation X: %f Y: %f Z: %f.", xgyro, ygyro, zgyro);
         char xGyroString[32];
@@ -81,6 +86,15 @@ static void sampleTimerCallback (le_timer_Ref_t timerRef) {
         logDataToFile("Y Orientation", yGyroString, lf);
         logDataToFile("Z Orientation", zGyroString, lf);   
     }
+
+    logCycleCounter++
+
+    //There are 278 possible log entries into a file before it reaches maximum size
+    //each time the function is called 368 bytes of data is logged
+    if(logCycleCounter >= 260) {
+        recycleLogFile(lf);
+    }
+    
 
     fclose(lf);
 }
