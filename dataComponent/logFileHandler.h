@@ -4,5 +4,7 @@
 #include "legato.h"
 
 LE_SHARED le_result_t logDataToFile(char sensorName[], char sensorValue[], FILE *logFile);
+char *createFirstLogFile();
+char *recycleLogFile();
 
 #endif //LOG_FILE_HANDLER_H

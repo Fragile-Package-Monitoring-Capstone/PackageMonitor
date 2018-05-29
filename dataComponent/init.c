@@ -18,7 +18,8 @@ double xgyro;
 double ygyro;
 double zgyro;
 
-const char logFilePath[] = "/var/log/package-monitor-logfile";
+//logfilepath is determined by createFirstLogFile()
+char *logFilePath = "";
 const char configFilePath[] = "/etc/package-monitor-configfile";
 
 bool tempLogged;
@@ -28,6 +29,7 @@ bool gyroLogged;
 
 //Used to check when the file needs to be recycled.
 int logCycleCounter;
+
 
 // Ian's Timer Code
 #define SAMPLE_TIMER_PERIOD_MS (1000)
@@ -87,12 +89,12 @@ static void sampleTimerCallback (le_timer_Ref_t timerRef) {
         logDataToFile("Z Orientation", zGyroString, lf);   
     }
 
-    logCycleCounter++
+    logCycleCounter++;
 
     //There are 278 possible log entries into a file before it reaches maximum size
-    //each time the function is called 368 bytes of data is logged
+    //each time the function is called 368 bytes of data is logged(as of git commit fa81c7a)
     if(logCycleCounter >= 260) {
-        recycleLogFile(lf);
+        logFilePath = recycleLogFile();
     }
     
 
@@ -101,7 +103,9 @@ static void sampleTimerCallback (le_timer_Ref_t timerRef) {
 
 
 COMPONENT_INIT {     
-  
+    fopen("/var/log/testing_file", "w");
+    logFilePath = createFirstLogFile();
+    LE_INFO("Log File Path is now: %s", logFilePath);
     struct configData config = readConfigOption(configFilePath);
     
     LE_INFO("Logging interval is set to: %i", config.dataInterval);
@@ -118,8 +122,8 @@ COMPONENT_INIT {
     gyroLogged = config.isGyroLogged;
     LE_INFO("Temperature logging is set to: %i", gyroLogged);
 
-    //Test if the log file can be opened
-    FILE *lf = fopen(logFilePath, "a");
+    //Create Log File
+    FILE *lf = fopen(logFilePath, "w");
     LE_ASSERT(lf != NULL);
     fclose(lf);
     sampleTimer = le_timer_Create("Sample Timer");       
