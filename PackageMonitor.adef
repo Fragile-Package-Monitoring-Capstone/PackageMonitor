@@ -5,7 +5,7 @@ version: 0.1
 bundles: {
     dir: {
         //load the log files directory
-        [w] dataComponent/logfiles /var/log/logfiles
+        [w] dataComponent/logfiles /logfiles
     }
     file: {
         //load the config file into the system etc directory

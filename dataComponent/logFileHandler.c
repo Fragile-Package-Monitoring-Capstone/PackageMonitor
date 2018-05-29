@@ -3,7 +3,7 @@
 
 //either integrate code into logDataToFile or create new function to recycle/create new logfiles
 
-#define logDirectoryPath "/var/log/logfiles/"
+#define logDirectoryPath "/logfiles/"
 #define logFileBaseName "package-monitor-logfile_"
 
 unsigned int logFileCounter = 2;
@@ -40,11 +40,13 @@ char *createFirstLogFile() {
 
     strcat(buffer, logDirectoryPath);
     strcat(buffer, logFileBaseName);
-    strcat(buffer, "#1_");
+    strcat(buffer, "1_");
     strcat(buffer, timeString);
     LE_INFO("First Log File Path set to: %s", buffer);
     FILE *f = fopen(buffer, "w");
-    LE_ASSERT(f != NULL);
+    if(!f) {
+        LE_ERROR("Failed to open file %s, error %d", buffer, errno);
+    }
     fclose(f);
     return buffer;
 
@@ -74,7 +76,10 @@ char *recycleLogFile() {
     logFileCounter++;
 
     FILE *f = fopen(buffer, "w");
-    LE_ASSERT(f != NULL);
+    if(!f) {
+        LE_ERROR("Failed to open file %s, error %d", buffer, errno);
+    }
+    
     fclose(f);
     return buffer;
 }

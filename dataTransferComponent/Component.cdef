@@ -3,13 +3,15 @@ requires:
 {
     api:
     {
-        le_avdata.api
-        le_avc.api
+// Uncomment when using these APIs.  Compiler will fail if these are
+// not used
+//        airVantage/le_avdata.api
+//        airVantage/le_avc.api
     }
 
     component:
     { 
-        dataComponent
+        $CURDIR/../dataComponent
     }
 
     

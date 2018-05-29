@@ -1,6 +1,5 @@
-
-
 cflags: {
+    -I $CURDIR/../dataTransferComponent
     -Wno-unused-variable
 }
 sources: {
