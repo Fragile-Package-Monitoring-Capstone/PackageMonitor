@@ -4,8 +4,7 @@
 #include "interfaces.h"
 #include "configFileReader.h"
 #include "logFileHandler.h"
-//#include "le_timer.h"
-
+//#include "dataTransfer.h"
 //These are the variables that sensor data is stored in.
 double temp;
 double pressure;
@@ -36,12 +35,34 @@ int logCycleCounter;
 
 static le_timer_Ref_t sampleTimer;
 
+/*Ian's sample timer code for sending to airvantage
+comments in this code are broken, replace the 
+*
+*    (void)timerRef;
+*    if(1 /* waiting for ian's help to fix this problem tempLogged == 1 ) {
+*        mangOH_ReadTemperatureSensor(&temp);
+*        LE_INFO("Current Temperature is: %f.", temp);
+*        char tempString[32];
+*        sprintf(tempString, "%f", temp);
+*        logDataToFile("Temperature", tempString, lf);
+*        /* Add logic to only send when temperature has changed AND is outside
+*         * of the allowed range
+*         
+*        if ( 1 /* temperature limit exceded? )
+*        {
+*            if (LE_OK != packageMonitor_UploadSingleDataImmediate(tempSensName, tempString, 0 /* get timestamp ))
+*            {
+*                LE_ERROR("Failed to send data for %s", tempSensName);
+*            }
+*        }
+*    }
+*/
+
+
 static void sampleTimerCallback (le_timer_Ref_t timerRef) {
 
     FILE *lf = fopen(logFilePath, "a");
     LE_ASSERT(lf != NULL);
-
-    
 
     // Not used
     (void)timerRef;
@@ -93,7 +114,8 @@ static void sampleTimerCallback (le_timer_Ref_t timerRef) {
 
     //There are 278 possible log entries into a file before it reaches maximum size
     //each time the function is called 368 bytes of data is logged(as of git commit fa81c7a)
-    if(logCycleCounter >= 260) {
+    if(logCycleCounter >= 5) {
+        logFilePath = "";
         logFilePath = recycleLogFile();
     }
     
@@ -103,7 +125,7 @@ static void sampleTimerCallback (le_timer_Ref_t timerRef) {
 
 
 COMPONENT_INIT {     
-    fopen("/var/log/testing_file", "w");
+    fopen("/logfiles/testing_file", "w");
     logFilePath = createFirstLogFile();
     LE_INFO("Log File Path is now: %s", logFilePath);
     struct configData config = readConfigOption(configFilePath);
