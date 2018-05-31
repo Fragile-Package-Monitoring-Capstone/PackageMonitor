@@ -7,7 +7,7 @@
 #define logFileBaseName "package-monitor-logfile_"
 
 unsigned int logFileCounter = 2;
-
+char buffer[256];
 le_result_t logDataToFile(char sensorName[], char sensorValue[], FILE *logFile) {   
     LE_ASSERT(logFile != NULL)
 
