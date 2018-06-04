@@ -5,8 +5,8 @@ requires:
     {
 // Uncomment when using these APIs.  Compiler will fail if these are
 // not used
-//        airVantage/le_avdata.api
-//        airVantage/le_avc.api
+        airVantage/le_avdata.api
+        airVantage/le_avc.api
     }
 
     component:

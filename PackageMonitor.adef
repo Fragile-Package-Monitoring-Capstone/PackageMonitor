@@ -5,7 +5,11 @@ version: 0.1
 bundles: {
     dir: {
         //load the log files directory
+<<<<<<< HEAD
         //[w] dataComponent/logfiles /var/logfiles
+=======
+    //    [w] dataComponent/logfiles /logfiles
+>>>>>>> 96672be73f9f6035c4a2de33270634ebf08d8fed
     }
     file: {
         //load the config file into the system etc directory
@@ -15,13 +19,21 @@ bundles: {
 
 executables: {
     LogTest = ( dataComponent )
+    AirVantageTest = ( dataTransferComponent )
 }
 
 processes: {
     run: {
         ( LogTest )
+	( AirVantageTest )
     }
     envVars: {
         LE_LOG_LEVEL = DEBUG
     }
+}
+
+bindings:
+{
+    AirVantageTest.dataTransferComponent.le_avc -> avcService.le_avc
+    AirVantageTest.dataTransferComponent.le_avdata -> avcService.le_avdata
 }

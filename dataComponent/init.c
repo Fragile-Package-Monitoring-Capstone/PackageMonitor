@@ -45,8 +45,13 @@ comments in this code are broken, replace the
 *        char tempString[32];
 *        sprintf(tempString, "%f", temp);
 *        logDataToFile("Temperature", tempString, lf);
+<<<<<<< HEAD
 *        Add logic to only send when temperature has changed AND is outside
 *         of the allowed range
+=======
+*         Add logic to only send when temperature has changed AND is outside
+*          of the allowed range
+>>>>>>> 96672be73f9f6035c4a2de33270634ebf08d8fed
 *         
 *        if ( 1  temperature limit exceded? )
 *        {

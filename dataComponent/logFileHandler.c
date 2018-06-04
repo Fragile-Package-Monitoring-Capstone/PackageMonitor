@@ -6,11 +6,10 @@
 #define logDirectoryPath "/var/log/"
 #define logFileBaseName "package-monitor-logfile_"
 
-le_msg_SessionRef_t *SessionRef;
+//le_msg_SessionRef_t *SessionRef;
 
 unsigned int logFileCounter = 2;
 char buffer[256];
-int user
 le_result_t logDataToFile(char sensorName[], char sensorValue[], FILE *logFile) {   
     LE_ASSERT(logFile != NULL)
 
