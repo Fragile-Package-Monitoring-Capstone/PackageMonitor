@@ -1,11 +1,11 @@
 start: manual
-sandboxed: true
+sandboxed: false
 version: 0.1
 
 bundles: {
     dir: {
         //load the log files directory
-        [w] dataComponent/logfiles /logfiles
+        //[w] dataComponent/logfiles /var/logfiles
     }
     file: {
         //load the config file into the system etc directory

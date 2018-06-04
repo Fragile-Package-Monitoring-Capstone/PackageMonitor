@@ -3,11 +3,14 @@
 
 //either integrate code into logDataToFile or create new function to recycle/create new logfiles
 
-#define logDirectoryPath "/logfiles/"
+#define logDirectoryPath "/var/log/"
 #define logFileBaseName "package-monitor-logfile_"
 
-unsigned int logFileCounter = 2;
+le_msg_SessionRef_t *SessionRef;
 
+unsigned int logFileCounter = 2;
+char buffer[256];
+int user
 le_result_t logDataToFile(char sensorName[], char sensorValue[], FILE *logFile) {   
     LE_ASSERT(logFile != NULL)
 
@@ -16,22 +19,22 @@ le_result_t logDataToFile(char sensorName[], char sensorValue[], FILE *logFile) 
 
     //My painful way to format the log message with judicrous use of strcat. 
     //If anyone finds a better way to do this please let me know
-    char buffer[128];
-    strftime(buffer, sizeof(buffer), "%F %T", currentTime);
-    strcat(buffer, " - ");
-    strcat(buffer, sensorName);
-    strcat(buffer, ": ");
-    strcat(buffer, sensorValue);
-    strcat(buffer, "\n");
+    char logbuffer[128];
+    strftime(logbuffer, sizeof(logbuffer), "%F %T", currentTime);
+    strcat(logbuffer, " - ");
+    strcat(logbuffer, sensorName);
+    strcat(logbuffer, ": ");
+    strcat(logbuffer, sensorValue);
+    strcat(logbuffer, "\n");
 
-    fprintf(logFile, "%s", buffer);
+    fprintf(logFile, "%s", logbuffer);
     return LE_OK;
 }
 
 char *createFirstLogFile() {
     //returns the path of the first log file. 
     LE_INFO("Creating First Log File");
-
+        
     time_t unixTime = time(NULL);
     struct tm *currentTime = gmtime(&unixTime);
     char timeString[21];
@@ -52,8 +55,6 @@ char *createFirstLogFile() {
 }
 
 char *recycleLogFile() {
-
-    
     char logFileNumber[9];  
     LE_INFO("Recycling Log File");
 

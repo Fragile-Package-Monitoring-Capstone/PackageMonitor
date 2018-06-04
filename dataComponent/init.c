@@ -39,18 +39,18 @@ static le_timer_Ref_t sampleTimer;
 comments in this code are broken, replace the 
 *
 *    (void)timerRef;
-*    if(1 /* waiting for ian's help to fix this problem tempLogged == 1 ) {
+*    if(1  waiting for ian's help to fix this problem tempLogged == 1 ) {
 *        mangOH_ReadTemperatureSensor(&temp);
 *        LE_INFO("Current Temperature is: %f.", temp);
 *        char tempString[32];
 *        sprintf(tempString, "%f", temp);
 *        logDataToFile("Temperature", tempString, lf);
-*        /* Add logic to only send when temperature has changed AND is outside
-*         * of the allowed range
+*        Add logic to only send when temperature has changed AND is outside
+*         of the allowed range
 *         
-*        if ( 1 /* temperature limit exceded? )
+*        if ( 1  temperature limit exceded? )
 *        {
-*            if (LE_OK != packageMonitor_UploadSingleDataImmediate(tempSensName, tempString, 0 /* get timestamp ))
+*            if (LE_OK != packageMonitor_UploadSingleDataImmediate(tempSensName, tempString, 0 get timestamp ))
 *            {
 *                LE_ERROR("Failed to send data for %s", tempSensName);
 *            }
